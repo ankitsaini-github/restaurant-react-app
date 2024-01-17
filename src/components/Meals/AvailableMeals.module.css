@@ -1,0 +1,45 @@
+.meals {
+    max-width: 60rem;
+    width: 90%;
+    margin: 2rem auto;
+    background-color: antiquewhite;
+    padding: 30px;
+    border-radius: 15px;
+    animation: meals-appear 1s ease-out forwards;
+  }
+  
+  .meals ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .mealitem{
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(70, 17, 17, 0.678);
+    margin-bottom: 10px;
+  }
+  .mealname{
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  .mealdescription{
+    font-style: italic;
+  }
+  .mealprice{
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(180, 101, 11);
+  }
+
+  @keyframes meals-appear {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
