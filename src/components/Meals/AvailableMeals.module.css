@@ -18,6 +18,8 @@
     padding-bottom: 10px;
     border-bottom: 2px solid rgba(70, 17, 17, 0.678);
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
   }
   .mealname{
     font-size: 20px;
