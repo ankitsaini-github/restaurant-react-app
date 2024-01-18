@@ -36,7 +36,7 @@ function AvailableMeal() {
         <div className={classes.mealprice}>${meal.price}</div>
       </div>
       <div>
-        <Mealitemform/>
+        <Mealitemform id={meal.id}/>
       </div>
     </li>);
 
