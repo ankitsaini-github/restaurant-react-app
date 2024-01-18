@@ -1,9 +1,14 @@
-import React from "react";
+import React,{useContext} from "react";
 import classes from "./Header.module.css";
 import headerBanner from '../../assets/headerBanner.jpg';
 import CartIcon from "../Cart/CartIcon";
+import CartContext from "../../store/Cart-context";
 
 function Header(props) {
+  const ctx=useContext(CartContext);
+  const totalCartItems=ctx.items.reduce((acc,item)=>{
+    return acc+item.amount
+  },0);
   return (
     <>
       <header className={classes.headerContainer}>
@@ -11,7 +16,7 @@ function Header(props) {
         <button className={classes.cartButton} onClick={props.onOpen}>
           <span className={classes.icon}><CartIcon/></span>
           <span>Your Cart</span>
-          <span className={classes.badge}>0</span>
+          <span className={classes.badge}>{totalCartItems}</span>
         </button>
       </header>
       <div className={classes.headerBanner}>

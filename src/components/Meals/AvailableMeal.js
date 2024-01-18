@@ -1,5 +1,7 @@
 import classes from "./AvailableMeals.module.css";
 import Mealitemform from "./Mealitemform";
+import CartContext from "../../store/Cart-context";
+import { useContext } from "react";
 
 const DUMMY_MEALS = [
   {
@@ -28,17 +30,41 @@ const DUMMY_MEALS = [
   },
 ];
 
+const MealItem = (props) => {
+  const ctx = useContext(CartContext);
+  const addMealHandler = (qty) => {
+    ctx.addItem({
+      id: props.id,
+      name: props.name,
+      amount: qty,
+      price: props.price,
+    });
+  };
+  return (
+    <li key={props.id} className={classes.mealitem}>
+      <div>
+        <div className={classes.mealname}>{props.name}</div>
+        <div className={classes.mealdescription}>{props.description}</div>
+        <div className={classes.mealprice}>${props.price}</div>
+      </div>
+      <div>
+        <Mealitemform id={props.id} onAddToCart={addMealHandler} />
+      </div>
+    </li>
+  );
+};
+
 function AvailableMeal() {
-  const mealsList = DUMMY_MEALS.map((meal) => <li key={meal.id} className={classes.mealitem}>
-      <div>
-        <div className={classes.mealname}>{meal.name}</div>
-        <div className={classes.mealdescription}>{meal.description}</div>
-        <div className={classes.mealprice}>${meal.price}</div>
-      </div>
-      <div>
-        <Mealitemform id={meal.id}/>
-      </div>
-    </li>);
+ 
+  const mealsList = DUMMY_MEALS.map((meal) => (
+    <MealItem
+      key={meal.id}
+      id={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
+  ));
 
   return (
     <section className={classes.meals}>
